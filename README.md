@@ -1,5 +1,5 @@
 # samsung_apply_fill_macro
-삼성 채용 성적 입력 매크로
+삼성 채용 성적 입력 매크로  
 테스트 환경: Windows10 Chrome
 > 간단히 테스트 해보고 안되면 손으로 입력...
 
