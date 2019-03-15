@@ -1,8 +1,6 @@
 # samsung_apply_fill_macro
 삼성 채용 성적 입력 매크로
 
-![](docs/animation.gif)
-
 # How to use
 
 1. python3.6 설치. 예시링크(https://winpython.github.io/)
@@ -19,3 +17,7 @@
 
 7. 네트워크 지연속도나 안정성을 고려한다면 9번째줄 delay_time 조절
 
+---
+6번 과정 이미지
+![](docs/1.PNG)  
+![](docs/2.PNG)  
