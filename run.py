@@ -20,6 +20,7 @@ for index, row in data[start_num:].iterrows():
     bot.press("enter") #과정
     bot.press("enter")
     next_form(bot)
+    time.sleep(0.5) #전공명 서버 딜레이
     bot.press("enter") #전공명
     next_form(bot)
     year = row["수강년도"] #수강년도
@@ -92,7 +93,8 @@ for index, row in data[start_num:].iterrows():
         bot.press("down_arrow")
     bot.press("enter")
     next_form(bot) #추가버튼
-    if index == 29 or index == 49:
+    if index%10 == 9: #10단위 중간 저장
+        time.sleep(0.5) #딜레이
         bot.press("enter") #중간 저장 팝업 
     time.sleep(0.2) #추가버튼 지연
     bot.press("tab")
