@@ -9,15 +9,13 @@
 
 2. pip install -r requirements.txt
 
-3. data_sample에 맞게 성적 엑셀 입력
-
-4. data.xlsx로 파일명 수정 또는 코드 수정(10번째 줄)
+3. data.xlsx 성적 엑셀 입력
 
 5. run.py 실행
 
-6. 3초내로 이수교과목 페이지 과정탭에서 열어주고 엔터
+6. config.yaml 파일의 setup_delay_time내로 이수교과목 페이지 과정탭에서 열어주고 엔터
 
-7. 네트워크 지연속도나 안정성을 고려한다면 9번째줄 delay_time 조절
+7. 네트워크 지연속도나 안정성을 고려한다면 config.yaml 파일의 delay_time 조절
 
 ---
 6번 과정 이미지
