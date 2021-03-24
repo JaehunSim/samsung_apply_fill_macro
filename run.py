@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
-
+import sys
 import pandas as pd
 import pyperclip
 import yaml
@@ -12,10 +12,12 @@ def load_config():
         config = yaml.safe_load(f)
     return config
 
+arg = sys.argv[1]
+print(arg)
 config = load_config()
 delay_time = config["delay_time"]
 bot = macro.ChatMacro(delay_time)
-data = pd.read_excel("data.xlsx")
+data = pd.read_excel(arg, engine='openpyxl')
 start_num = config["start_num"] #첫번째를 0으로 기준, 중간에 끊기면 이 숫자 조절
 setup_delay_time = config["setup_delay_time"]
 class_taken_year = config["class_taken_year"]
@@ -33,8 +35,20 @@ for index, row in data[start_num:].iterrows():
         bot.press("down_arrow")
     bot.press("enter")
     next_form(bot)
-    time.sleep(0.5) #전공명 서버 딜레이
+    time.sleep(1) #전공명 서버 딜레이
+    univ_type = row["학교"]
+    for _ in range(1, univ_type):
+        bot.press('tab')
     bot.press("enter") #전공명
+    next_form(bot)
+    class_type = row["과목유형"] #과목유형
+    if class_type.startswith("교양"):
+        count = 1
+    elif class_type.startswith("전공"):
+        count = 0
+    for i in range(count):
+        bot.press("down_arrow")
+    bot.press("enter")
     next_form(bot)
     year = row["수강년도"] #수강년도
     count = class_taken_year - year
@@ -54,15 +68,11 @@ for index, row in data[start_num:].iterrows():
         bot.press("down_arrow")
     bot.press("enter")
     next_form(bot)
-    class_type = row["과목유형"] #과목유형
-    if class_type.startswith("교양"):
-        count = 1
-    elif class_type.startswith("전공"):
-        count = 0
-    for i in range(count):
-        bot.press("down_arrow")
+    class_name = row["과목명"] #과목명
+    pyperclip.copy(class_name)
+    bot.pressHoldRelease("ctrl", "v")
+    bot.press("tab")
     bot.press("enter")
-    next_form(bot)
     is_retaken = row["재수강"] #재수강여부
     if not is_retaken:
         count = 1
@@ -72,10 +82,6 @@ for index, row in data[start_num:].iterrows():
         bot.press("down_arrow")
     bot.press("enter")
     bot.press("tab")
-    bot.press("tab")
-    class_name = row["과목명"] #과목명
-    pyperclip.copy(class_name)
-    bot.pressHoldRelease("ctrl", "v")
     bot.press("tab")
     bot.press("enter")
     class_point = row["취득학점"] #취득학점
