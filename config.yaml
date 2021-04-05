@@ -1,5 +1,5 @@
 delay_time: 0.25 # 단위: 초
 start_num: 0 # 첫번째를 0으로 기준, 중간에 끊기면 이 숫자 조절 (10개단위로 조절 필수)
 setup_delay_time: 3 # 맨 처음 실행시 대기 시간
-class_taken_year: 2020 # 수강년도 클릭시 처음 나오는 년도
+class_taken_year: 2022 # 수강년도 클릭시 처음 나오는 년도
 degree_type: 1 # 1. 학사, 2. 석사, 3. 박사
